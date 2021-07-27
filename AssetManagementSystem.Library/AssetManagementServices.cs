@@ -26,8 +26,32 @@ namespace AssetManagementSystem.Library
             Asset a7 = new Asset("C60", "Clamping fixture", "S2");
             Asset a8 = new Asset("C40", "Blade safety cover", "S11");
             Asset a9 = new Asset("C40", "Shutter gripper", "S3");
+
+            _listOfAssets = new List<Asset>() { a1, a2, a3, a4, a5, a6, a7, a8, a9 };
         }
 
+        public void GetAssetName(string machineName)
+        {
+            int count = default;
+            foreach(var asset in _listOfAssets)
+            {
+                if(machineName == asset.MachineName)
+                {
+                    count++;
+                    Console.WriteLine($"{machineName} Machine contains Asset {count}: {asset.AssetName} with Series Number: {asset.SeriesNumber}");
+                }
+            }
+        }
 
+        public void GetMachineName(string assetName)
+        {
+            foreach (var asset in _listOfAssets)
+            {
+                if (assetName == asset.AssetName)
+                {
+                    Console.WriteLine($"{assetName} Asset with Series Number: {asset.SeriesNumber} is used on : {asset.MachineName} Machine");
+                }
+            }
+        }
     }
 }
