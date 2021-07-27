@@ -8,8 +8,9 @@ namespace AssetManagementSystem.ConsoleUI
         static AssetManagementServices services = new AssetManagementServices();
         static void Main(string[] args)
         {
-            services.GetAssetName("C300");
-            services.GetMachineName("Blade safety cover");
+            //services.GetAssetName("C300");
+            //services.GetMachineName("Blade safety cover");
+            services.GetSortedAssetData();
         }
     }
 }

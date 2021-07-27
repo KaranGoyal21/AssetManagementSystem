@@ -10,6 +10,8 @@ namespace AssetManagementSystem.Library
     {
         List<Asset> _listOfAssets;
 
+        List<string> _allAssetForSameMachineType = new List<string>();
+
         public AssetManagementServices()
         {
             GetAssetData();
@@ -17,7 +19,7 @@ namespace AssetManagementSystem.Library
 
         public void GetAssetData()
         {
-            Asset a1 = new Asset("C300", "Cutterhead", "S6");
+            Asset a1 = new Asset("C300", "Cutter head", "S6");
             Asset a2 = new Asset("C40", "Cutter head", "S7");
             Asset a3 = new Asset("C300", "Blade safety cover", "S10");
             Asset a4 = new Asset("C60", "Blade safety cover", "S11");
@@ -30,12 +32,27 @@ namespace AssetManagementSystem.Library
             _listOfAssets = new List<Asset>() { a1, a2, a3, a4, a5, a6, a7, a8, a9 };
         }
 
+
+        public string use = "C300";
+
+        public List<string> GetSortedAssetData()
+        {
+            foreach (var asset in _listOfAssets)
+            {
+                if (use == asset.MachineName)
+                {
+                    _allAssetForSameMachineType.Add(asset.AssetName);
+                }
+            }
+            return _allAssetForSameMachineType;
+        }
+
         public void GetAssetName(string machineName)
         {
             int count = default;
-            foreach(var asset in _listOfAssets)
+            foreach (var asset in _listOfAssets)
             {
-                if(machineName == asset.MachineName)
+                if (machineName == asset.MachineName)
                 {
                     count++;
                     Console.WriteLine($"{machineName} Machine contains Asset {count}: {asset.AssetName} with Series Number: {asset.SeriesNumber}");
@@ -53,5 +70,13 @@ namespace AssetManagementSystem.Library
                 }
             }
         }
+
+        /*public void GetMachineTypesUsingLatestAssets()
+        {
+            foreach (var asset in _listOfAssets)
+            {
+                if (asset.MachineName)
+            }
+        }*/
     }
 }
